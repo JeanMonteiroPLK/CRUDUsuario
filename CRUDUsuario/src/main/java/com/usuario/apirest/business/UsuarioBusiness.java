@@ -17,7 +17,7 @@ public class UsuarioBusiness {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	public List<UsuarioSimples> listar() {
+	public List<UsuarioSimples> listarUsuarios() {
 		List<UsuarioSimples> simples = new ArrayList<>();
 		List<Usuario> todos = usuarioRepository.findAll();
 		for (Usuario u : todos) {
@@ -25,11 +25,16 @@ public class UsuarioBusiness {
 		}
 		return simples;
 	}
-
-	public Usuario listarPorId(String id) {
-		Optional<Usuario> produto = usuarioRepository.findById(UUID.fromString(id));
-		if (produto.isPresent()) {
-			return produto.get();
+	
+//	public EnderecoSimples listarEnderecoPorIdDeUsuario(String id) {
+//		Usuario usuario = listarUsuarioPorId(id);
+//		return null;
+//	}
+	
+	public Usuario listarUsuarioPorId(String id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(UUID.fromString(id));
+		if (usuario.isPresent()) {
+			return usuario.get();
 		}
 		return null;
 	}

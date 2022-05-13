@@ -30,13 +30,13 @@ public class UsuarioResource {
 
 	@GetMapping("/usuario")
 	public List<UsuarioSimples> listar() {
-		return usuarioBusiness.listar();
+		return usuarioBusiness.listarUsuarios();
 	}
 
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> listarPorId(@PathVariable(value = "id") String id) {
-		Usuario produto = usuarioBusiness.listarPorId(id);
-		return ResponseEntity.ok(produto);
+		Usuario usuario = usuarioBusiness.listarUsuarioPorId(id);
+		return ResponseEntity.ok(usuario);
 	}
 
 	@PostMapping("/usuario")
@@ -49,7 +49,7 @@ public class UsuarioResource {
 	public ResponseEntity<String> deletar(@PathVariable(value = "id") String id) {
 		ResponseEntity<String> response = null;
 		try {
-			Usuario usuario = usuarioBusiness.listarPorId(id);
+			Usuario usuario = usuarioBusiness.listarUsuarioPorId(id);
 			if (usuario != null) {
 				usuarioBusiness.deletar(usuario);
 				response = ResponseEntity.ok("Usuário deletado com sucesso!");
@@ -69,7 +69,7 @@ public class UsuarioResource {
 
 	@PatchMapping("/usuario/{id}/nome")
 	public Usuario atualizarNome(@PathVariable(value = "id") String id, @RequestBody String nome) {
-		Usuario usuario = usuarioBusiness.listarPorId(id);
+		Usuario usuario = usuarioBusiness.listarUsuarioPorId(id);
 		usuario.setNome(nome);
 		return usuarioBusiness.atualizar(usuario);
 	}
