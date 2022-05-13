@@ -23,4 +23,6 @@ public class Usuario implements Serializable {
 	private String dataNascimento;
 	private String email;
 	
+	//private Endereco endereco;
+	
 }
